@@ -35,17 +35,44 @@ npm run dev
 ## Folder Structure 📁
 
 - `src/`
-- `components/`: Contains reusable components used throughout the app.
-- `redux/`: Houses the Redux-related logic.
- - `store.js`: Initializes the Redux store.
- - `slices/`: Contains individual reducer logic using slices.
-   - `cartSlice.js`: Manages cart-related state and actions.
-   - `productsSlice.js`: Manages product list-related state and actions.
- - `hooks/`: Provides custom hooks for Redux store interactions.
+  - `components/`: Contains reusable components used throughout the app.
+  - `redux/`: Houses the Redux-related logic.
+     - `store.js`: Initializes the Redux store.
+     - `slices/`: Contains individual reducer logic using slices.
+       - `cartSlice.js`: Manages cart-related state and actions.
+       - `productsSlice.js`: Manages product list-related state and actions.
+     - `hooks/`: Provides custom hooks for Redux store interactions.
 
 ## Redux Toolkit Flowchart 🔄
 
-![Redux Toolkit Flowchart](./images/redux_toolkit_flowchart.png)
+![Redux Toolkit Flowchart](https://res.cloudinary.com/dlpgowt5s/image/upload/v1692029087/WhatsApp_Image_2023-08-14_at_21.30.11_gnnvzm.jpg)
+
+## Fetching APIs with Redux Toolkit and createAsyncThunk
+
+In this project, we leverage the power of Redux Toolkit and its `createAsyncThunk` function to simplify the process of fetching data from an external API. This allows us to manage asynchronous actions in a more organized and efficient manner.
+
+### Understanding createAsyncThunk
+
+`createAsyncThunk` is a utility function provided by Redux Toolkit that streamlines the handling of asynchronous actions in Redux. It abstracts away much of the boilerplate code involved in defining and dispatching actions for asynchronous operations.
+
+### Fetching Products from the API
+
+Let's take a look at how we use `createAsyncThunk` to fetch products from the [fakestoreapi.com](https://fakestoreapi.com/products) API:
+
+1. **Defining the Async Thunk Action:**
+
+In the `productsSlice.js` file, we define an async thunk action using `createAsyncThunk`. This action encapsulates the process of fetching products from the API.
+
+```javascript
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
+  const response = await fetch("https://fakestoreapi.com/products")
+  return response.json()
+})
+
+// ... Rest of the code ...
+```
 
 ## Learn More 📚
 
